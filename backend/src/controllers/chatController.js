@@ -1,5 +1,3 @@
-import userDetails from "../models/userDetails.js";
-
 export async function getChatResponse(req, res) {
 	try {
 		const userId = req.user?.userId;

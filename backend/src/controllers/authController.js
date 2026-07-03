@@ -2,7 +2,7 @@ import Usermodel from "../models/userModel.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Session from "../models/sessionModel.js";
-import { sendEmail } from "../../services/emailServices.js";
+import { sendEmail } from "../services/emailServices.js";
 import Otpmodel from "../models/otpModel.js";
 import { generateOtp, getOtpHtml, newloginAlert } from "../utils/utils.js";
 function getTokenSecrets() {
