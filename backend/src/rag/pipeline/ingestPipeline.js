@@ -8,20 +8,49 @@ export async function ingestDocument(
     pdfPath,
     metadata = {}
 ) {
-    const pdf = await loadPdf(pdfPath);
-    const cleanedText = cleanText(pdf.text);
-    const documentMetadata = {
+    try {
+        const pdf = await loadPdf(pdfPath);
+        const cleanedText = cleanText(pdf.text);
+        const documentMetadata = {
 
-        ...metadata,
+            ...metadata,
 
-        pages: pdf.pages
-    };
-    const chunks =
-        await chunkDocument(
-            cleanedText,
+            pages: pdf.pages
+        };
+        const chunks =
+            await chunkDocument(
+                cleanedText,
 
-            documentMetadata
-        );
-    return chunks;
+                documentMetadata
+            );
+        const records = [];
+
+        for (const chunk of chunks) {
+
+            const embedding = await generateEmbedding(
+                chunk.pageContent
+            );
+            const { loc, ...metadata } = chunk.metadata;
+            records.push({
+                pageContent: chunk.pageContent,
+                metadata,
+                embedding,
+            });
+
+            console.log(
+                `Embedding ${records.length}/${chunks.length}`
+            );
+        }
+
+        await saveChunks(records);
+        return {
+            document: metadata.source ?? pdfPath,
+            pages: pdf.pages,
+            chunksCreated: chunks.length,
+            chunksStored: records.length,
+            status: "success",
+        };
+    } catch (error) { throw new Error(`Failed to ingest document: ${error.message}`); }
+
 }
 export default ingestDocument;
