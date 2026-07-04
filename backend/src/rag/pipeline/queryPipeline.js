@@ -32,11 +32,11 @@ export async function queryPipeline(question) {
     return {
         question,
         answer,
-        retrievedChunks: chunks,
-        sources: chunks.map(c => ({
+        retrievedChunks: filteredChunks,
+        sources: filteredChunks.map((c) => ({
             source: c.source,
-            score: c.score
-        }))
+            score: c.score,
+        })),
     };
 }
 export default queryPipeline;
