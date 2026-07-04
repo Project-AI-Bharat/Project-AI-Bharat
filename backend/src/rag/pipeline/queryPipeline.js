@@ -31,10 +31,9 @@ export async function queryPipeline(question) {
         question,
         answer,
         retrievedChunks: chunks,
-        sources: chunks.map(chunk => ({
-            source: chunk.source,
-            page: chunk.page,
-            score: chunk.score
+        sources: chunks.map(c => ({
+            source: c.source,
+            score: c.score
         }))
     };
 }
