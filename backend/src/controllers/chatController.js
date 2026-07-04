@@ -1,4 +1,4 @@
-import { runQueryPipeline } from "../rag/pipeline/queryPipeline.js";
+import { queryPipeline } from "../rag/pipeline/queryPipeline.js";
 
 export async function getChatResponse(req, res) {
   try {
@@ -12,7 +12,7 @@ export async function getChatResponse(req, res) {
       });
     }
 
-    const response = await runQueryPipeline({
+    const response = await queryPipeline({
       question: message.trim(),
       userId,
     });

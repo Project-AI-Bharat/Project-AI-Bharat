@@ -2,9 +2,11 @@ import { v4 as uuid } from "uuid";
 import client from "./qdrantClient.js";
 
 const COLLECTION_NAME = process.env.QDRANT_COLLECTION;
+
 if (!COLLECTION_NAME) {
     throw new Error("QDRANT_COLLECTION is not configured.");
 }
+
 /**
  * Save multiple chunks to Qdrant.
  *
@@ -31,9 +33,7 @@ export async function saveChunks(chunks) {
 
         return {
             id: uuid(),
-
             vector: chunk.embedding,
-
             payload: {
                 content: chunk.pageContent,
                 ...chunk.metadata,
