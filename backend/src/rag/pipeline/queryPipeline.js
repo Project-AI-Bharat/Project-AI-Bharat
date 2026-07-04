@@ -11,18 +11,20 @@ export async function queryPipeline(question) {
         embedding,
         5
     );
-    const filteredChunks = chunks.filter(
-        chunk => chunk.score >= 0.75
-    );
+    const filteredChunks = chunks.filter((chunk) => chunk.score >= 0.75);
+
     if (filteredChunks.length === 0) {
         return {
-            answer:
-                "I couldn't find this information in the available documents."
+            question,
+            answer: "I couldn't find this information in the provided documents.",
+            retrievedChunks: [],
+            sources: [],
         };
     }
+
     const prompt = buildPrompt(
         question,
-        chunks
+        filteredChunks
     );
 
     const answer = await generateResponse(prompt);
