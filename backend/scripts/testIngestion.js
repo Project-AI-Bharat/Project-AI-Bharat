@@ -4,7 +4,7 @@ import ingestDocument from "../src/rag/pipeline/ingestPipeline.js";
 
 async function main() {
     const result = await ingestDocument(
-        "./data/RevisedPM-KISANOperationalGuidelines(English).pdf",
+        "../dataset/processed/PM-Kissan-guidelines.txt",
         {
             source: "pm-kisan.pdf",
             category: "Agriculture",
