@@ -87,7 +87,7 @@ export async function login(req, res) {
 
         if (user.verified) {
             const alertHtml = newloginAlert(email);
-            await sendEmail(email, 'New Login Alert', 'Your account on Dada Authentication system was accessed from a new device. If this was you, you can safely ignore this message. If you did not log in, please change your password immediately and review your active sessions.', alertHtml);
+            await sendEmail(email, 'New Login Alert', 'Your account was accessed from a new device. If this was you, you can safely ignore this message. If you did not log in, please change your password immediately and review your active sessions.', alertHtml);
         }
         const refreshtokenhash = await bcrypt.hash(refreshtoken, 10);
         const session = await Session.create({
