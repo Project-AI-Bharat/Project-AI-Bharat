@@ -24,7 +24,7 @@ transporter.verify((error, success) => {
 export const sendEmail = async (to, subject, text, html) => {
     try {
         const info = await transporter.sendMail({
-            from: `"Your Name" <${process.env.EMAIL_USER}>`,
+            from: `"AI Bharat" <${process.env.EMAIL_USER}>`,
             to,
             subject,
             text,
