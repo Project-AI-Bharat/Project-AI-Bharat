@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import loginBg from "../assets/login_bg.png";
-import { AuthContext } from "../contexts/AuthContext.jsx";
+import { AuthContext } from "../contexts/authContextValue.js";
 
 function EmailIcon() {
   return (
