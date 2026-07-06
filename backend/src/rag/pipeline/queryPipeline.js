@@ -12,7 +12,7 @@ export async function queryPipeline(question) {
         5
     );
     const filteredChunks = chunks.filter(
-        chunk => chunk.score >= 0.60
+        chunk => chunk.score >= 0.50
     );
     if (filteredChunks.length === 0) {
         return {
