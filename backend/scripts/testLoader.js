@@ -1,8 +1,8 @@
-import loadPdf from "../src/rag/loaders/pdfLoader.js";
+import loadTex from "../src/rag/loaders/txtLoader.js";
 
 async function main() {
     try {
-        const result = await loadPdf("./data/PresidentialAddressProfRameshChand17012023.pdf");
+        const result = await loadTex("../dataset/processed/PM-Kissan-guidelines.txt");
 
         console.log("Pages:", result.pages);
         console.log("Info:", result.info);
@@ -11,7 +11,7 @@ async function main() {
 
         console.log(result.text.substring(0, 1000));
     } catch (error) {
-        console.error("Failed to load PDF:", error.message);
+        console.error("Failed to load TXT:", error.message);
     }
 }
 

@@ -1,4 +1,4 @@
-import loadPdf from "../loaders/pdfLoader.js"
+import loadTex from "../loaders/txtLoader.js"
 import cleanText from "../utils/cleanText.js"
 import chunkDocument from "../chunkers/recursiveChunker.js"
 import generateEmbedding from "../embeddings/geminiEmbedding.js"
@@ -9,7 +9,7 @@ export async function ingestDocument(
     metadata = {}
 ) {
     try {
-        const pdf = await loadPdf(pdfPath);
+        const pdf = await loadTex(pdfPath);
         const cleanedText = cleanText(pdf.text);
         const documentMetadata = {
 
